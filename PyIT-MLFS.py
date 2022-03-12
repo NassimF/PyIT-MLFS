@@ -9,6 +9,7 @@ from classes.mdmr import mdmr as MDMR
 from classes.lsmfs  import  lsmfs as LSMFS
 from classes.mlsmfs import mlsmfs as MLSMFS
 from classes.ppt_mi import ppt_mi as PPT_MI
+from classes.MMRMI import MMRMI
 import argparse
 from tqdm import tqdm
 import os
@@ -39,7 +40,8 @@ if __name__ == '__main__':
 
     method_dispatcher = {'LRFS':LRFS, 'PPT_MI':PPT_MI,\
          'IGMF':IGMF, 'PMU':PMU, 'D2F':D2F, 'SCLS':SCLS,\
-              'MDMR':MDMR, 'LSMFS':LSMFS, 'MLSMFS':MLSMFS }
+              'MDMR':MDMR, 'LSMFS':LSMFS, 'MLSMFS':MLSMFS,\
+                  'MMRMI': MMRMI }
 
     for d in args.datasets: 
         X_train, y_train, X_test, y_test = read_data(d_name= d, d_path= args.data_path)

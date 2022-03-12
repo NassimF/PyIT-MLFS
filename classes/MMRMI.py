@@ -1,9 +1,10 @@
 import operator
-from IM import interactionInfo,mi_pairwise
+from .IM import interactionInfo,mi_pairwise
+from .base import BaseFS
 from tqdm import tqdm
 
 
-class MMRMI:
+class MMRMI(BaseFS):
     
     
     
