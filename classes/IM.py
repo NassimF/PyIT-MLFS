@@ -68,6 +68,29 @@ def mi_multi(X, Y, Z, message = None):
     
 
 
+def interactionInfo(X, Y, Z, message = None):    
+    mi = [[[None for z in range(Z.shape[1])] for y in range(Y.shape[1])] for x in range(X.shape[1])]
+    if X.shape[1] > 1: 
+        with tqdm(total=X.shape[1], ncols=80) as t:
+            t.set_description('Calculating {}'.format(message))
+            for x in range(X.shape[1]):                 
+                for y in range(Y.shape[1]): 
+                    for z in range(Z.shape[1]): 
+                        mi[x][y][z] = drv.information_interaction\
+                            (np.vstack([np.transpose(X[:,x].reshape(-1,1)),\
+                            np.transpose(Y[:,y].reshape(-1,1)),np.transpose(Z[:,z].reshape(-1,1))]))
+                t.update(1)
+    else: 
+        for x in range(X.shape[1]):                 
+            for y in range(Y.shape[1]): 
+                for z in range(Z.shape[1]): 
+                    mi[x][y][z] = drv.information_interaction\
+                        (np.vstack([np.transpose(X[:,x].reshape(-1,1)),\
+                        np.transpose(Y[:,y].reshape(-1,1)),np.transpose(Z[:,z].reshape(-1,1))])) 
+    return mi
+
+
+
     
 def entropy_joint(X):  
     return drv.entropy_joint(X)
