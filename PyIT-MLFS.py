@@ -9,7 +9,7 @@ from classes.mdmr import mdmr as MDMR
 from classes.lsmfs  import  lsmfs as LSMFS
 from classes.mlsmfs import mlsmfs as MLSMFS
 from classes.ppt_mi import ppt_mi as PPT_MI
-from classes.MMRMI import MMRMI
+from classes.MMRMI import MMRMI as  MMRMI
 import argparse
 from tqdm import tqdm
 import os
