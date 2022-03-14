@@ -43,6 +43,7 @@ class MMRMI(BaseFS):
             f_max_mi = list_sum.index(max(list_sum))
             S.append(f_max_mi) #add candid feature to S
             F.remove(f_max_mi) # remove feature from F
+            t.update(1)
 
             while k < K:
                 ## for f_i in F'
@@ -111,7 +112,7 @@ class MMRMI(BaseFS):
                 f_max_mi = list_sum.index(max(list_sum))
                 S.append(f_max_mi) #add candid feature to S
                 F.remove(f_max_mi) # remove feature from F
-            
+                t.update(1)
 
 
 
