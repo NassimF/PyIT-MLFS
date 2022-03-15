@@ -142,7 +142,7 @@ class MMRMI(BaseFS):
         """ Find the MRMI score for each feature f_i"""
         
         
-        
+
         # answer of second term in mrmi
         list_subtraction = []
         res2 = 0 # sum of I(f_i,f_j,L_i) on the left
@@ -165,6 +165,9 @@ class MMRMI(BaseFS):
 
         #for f_j in F-F'
         for f_j in S:
+
+            if ii_matrix[f_i][f_j][L_i] < 0:
+                continue
            
             for L_i in range(y.shape[1]):               
                 res2 = res2 + ii_matrix[f_i][f_j][L_i]
@@ -241,6 +244,9 @@ class MMRMI(BaseFS):
         #for f_j in F-F'
         for f_j in S:
             
+            if ii_matrix[f_i][f_j][L_i] < 0:
+                continue
+
             for L_i in range(y.shape[1]):               
                 res2 = res2 + ii_matrix[f_i][f_j][L_i]
                 
