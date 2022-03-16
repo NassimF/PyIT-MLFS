@@ -1,3 +1,4 @@
+import math
 import operator
 from .IM import interactionInfo,mi_pairwise
 from .base import BaseFS
@@ -49,7 +50,7 @@ class MMRMI(BaseFS):
                 ## for f_i in F'
                 #calculate mrmi score for each feature f_i and/
                 #add f_i index and mrmi score to a list in the form of a tuple
-                list_mrmi_scores=[(f_i,self.MRMI1(f_i, S ,X ,y)) for f_i in F]
+                list_mrmi_scores=[(f_i,self.MRMI1(f_i,F, S ,X ,y)) for f_i in F]
 
                 #find the feature with max mrmi
                 f_max_mrmi = max(list_mrmi_scores , key = operator.itemgetter(1))[0]
@@ -123,7 +124,7 @@ class MMRMI(BaseFS):
                     ## for f_i in F'
                     #calculate mrmi score for each feature f_i and/
                     #add f_i index and mrmi score to a list in the form of a tuple
-                    list_mrmi_scores=[(f_i,self.MRMI(f_i,S,mi_matrix,ii_matrix,mi_matrix_features,y)) for f_i in F]
+                    list_mrmi_scores=[(f_i,self.MRMI(f_i,F,S,mi_matrix,ii_matrix,mi_matrix_features,y)) for f_i in F]
 
                     #find the feature with max mrmi
                     f_max_mrmi = max(list_mrmi_scores , key = operator.itemgetter(1))[0]
@@ -138,7 +139,7 @@ class MMRMI(BaseFS):
         
 
         
-    def MRMI(self,f_i,S,mi_matrix,ii_matrix,mi_matrix_features, y):
+    def MRMI(self,f_i,F,S,mi_matrix,ii_matrix,mi_matrix_features, y):
         """ Find the MRMI score for each feature f_i"""
         
         
@@ -193,7 +194,7 @@ class MMRMI(BaseFS):
                    
         #special case
         if list_subtraction == []:
-            return (F[0], 0)
+            return ( -math.inf)
         
         #add the score of f_j with max score to the first term
         max_subtraction =  max(list_subtraction )
@@ -205,7 +206,7 @@ class MMRMI(BaseFS):
 
 
 
-    def MRMI1(self,f_i,S,X, y):
+    def MRMI1(self,f_i,F,S,X, y):
         """ Find the MRMI score for each feature f_i"""
         
         
@@ -271,7 +272,7 @@ class MMRMI(BaseFS):
                     
         #special case
         if list_subtraction == []:
-            return (F[0], 0)
+            return (-math.inf)
         
         #add the score of f_j with max score to the first term
         max_subtraction =  max(list_subtraction )
